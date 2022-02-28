@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    height: 60px;
 }
 header {
     display: flex;
@@ -11,3 +12,49 @@ header {
     color: hotpink;
 }
 
+/* Home Page Styles */
+.mainBody {
+    display: grid;
+    grid-template-columns: .5fr  .8fr .5fr;
+    grid-template-rows: .3fr;
+}
+
+/* TITLE */
+.mainTitle {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3 ;
+    text-align: center;
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+/* Paragraph */
+.mainText-p {
+    text-align: center;
+    grid-column: 2 / 3;
+    grid-row: 3/4;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* BUTTON */
+.home-btn {
+    grid-row: 4/5;
+    grid-column: 2/3;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 10px 0;
+    position: relative;
+    left: 255px;
+    width: 100px;
+    color: white;
+    background-color: purple;
+    border: 1px purple solid;
+    border-radius: 10px;
+} 
+
+.home-btn:hover {
+    background-color: pink;
+    border: 2px pink solid
+}
