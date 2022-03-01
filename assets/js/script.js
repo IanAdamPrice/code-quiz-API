@@ -1,29 +1,55 @@
 var startEl = document.querySelector("#quizBody");
+var timerEl = document.querySelector("#timer");
+var time = 75;
+
+
+var timer = function () {
+
+    var timeInt = setInterval(() => {
+        if (time > 1) {
+            timerEl.textContent = time;
+            time --;
+        } else {
+            timerEl.textContent("You ran out of time!");
+            clearInterval(timeInt);
+        }
+    }, 1000);
+};
 
 var questionOne = function() {
-    var questionOneContainer = document.createElement("div");
-    questionOneContainer.className = "question-one-container";
-    startEl.appendChild(questionOneContainer);
+
+    var questionOneEl = document.createElement("div");
+    questionOneEl.className = "question-one-container";
+    startEl.appendChild(questionOneEl);
 
     var questionOne = document.createElement("h1");
     questionOne.textContent = "Inside which HTML element do we put the JavaScript?";
-    questionOneContainer.appendChild(questionOne);
+    questionOne.className = "question-one";
+    questionOneEl.appendChild(questionOne);
+
+    var answerDiv = document.createElement("div");
+    answerDiv.className = "answer-container";
+    questionOneEl.appendChild(answerDiv);
 
     var answerOne = document.createElement("button");
-    answerOne.textContent = "script";
-    questionOneContainer.appendChild(answerOne);
+    answerOne.textContent = "1. script";
+    answerOne.className = "answer-one";
+    answerDiv.appendChild(answerOne);
 
     var answerTwo = document.createElement("button");
-    answerTwo.textContent = "js";
-    questionOneContainer.appendChild(answerTwo);
+    answerTwo.textContent = "2. js";
+    answerTwo.className = "answer-two"
+    answerDiv.appendChild(answerTwo);
 
     var answerThree = document.createElement("button");
-    answerThree.textContent = "scripting";
-    questionOneContainer.appendChild(answerThree);
+    answerThree.textContent = "3. scripting";
+    answerThree.className = "answer-three"
+    answerDiv.appendChild(answerThree);
 
     var answerFour = document.createElement("button");
-    answerFour.textContent = "javascript";
-    questionOneContainer.appendChild(answerFour);
+    answerFour.textContent = "4. javascript";
+    answerFour.className = "answer-four";
+    answerDiv.appendChild(answerFour);
 }
 
 var startQuiz = function () {
@@ -49,6 +75,7 @@ var startQuiz = function () {
     body.appendChild(startQuizBtn);
 
     startQuizBtn.addEventListener("click", event => {
+        timer();
         startQuizBtn.remove();
         mainHeader.remove();
         mainParagraph.remove();
