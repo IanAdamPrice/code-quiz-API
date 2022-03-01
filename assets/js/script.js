@@ -4,73 +4,125 @@ var time = 75;
 var score = 0;
 
 var score = function () {
-    totalScore = totalScore + 10;
+  totalScore = totalScore + 10;
 }
 
 
 var timer = function () {
-
-    var timeInt = setInterval(() => {
-        if (time > 1) {
-            timerEl.textContent = time;
-            time --;
-        } else {
-            timerEl.textContent("You ran out of time!");
-            clearInterval(timeInt);
-        }
-    }, 1000);
+  var timeInt = setInterval(() => {
+    if (time > 1) {
+      timerEl.textContent = time;
+      time --;
+    } else {
+        timerEl.textContent("You ran out of time!");
+        clearInterval(timeInt);
+    }
+  }, 1000);
 };
 
-var questionFive = function () {
-    var wrong = function () {
-        questionDiv.remove();
-    }
+var yourScore = function () {
+  var scoreDiv = document.createElement("div");
+  scoreDiv.className = "scoreDiv";
+  startEl.appendChild(scoreDiv);
 
-    var questionDiv = document.createElement("div");
-    questionDiv.className = "questionDiv";
-    startEl.appendChild(questionDiv);
+  var allDone = document.createElement("h1");
+  allDone.textContent = "All Done!";
+  allDone.className = "allDone";
+  scoreDiv.appendChild(allDone);
 
-    var question =document.createElement("h1");
-    question.className = "question";
-    question.textContent = "What are the main differences between let and const?";
-    questionDiv.appendChild(question);
+  var result = document.createElement("h4");
+  result.textContent = "Your final score is" + totalScore;
+  result.className = "result";
+  scoreDiv.appendChild(result);
 
-    var answerDiv = document.createElement("div");
-    answerDiv.className = "answerDiv";
-    questionDiv.appendChild(answerDiv);
+  var inputContainer = document.createElement("div");
+  inputContainer.className = "inputContainer"
+  scoreDiv.appendChild(inputContainer);
 
-    var answer1 = document.createElement("button");
-    answer1.className = "answer-one";
-    answer1.textContent = "1. let can be reassigned, const cannot be reassigned";
-    answerDiv.appendChild(answer1);
-    answer1.addEventListener("click", event => {
-        questionDiv.remove();
-        points();
+  var label = document.createElement("label");
+  label.textContent = "Enter Your Initials";
+  label.className = "label";
+  label.setAttribute("for", "input");
+  inputContainer.appendChild(label);
+
+  var initalInput = document.createElement("Input");
+  initalInput.className = "score-input";
+  initalInput.setAttribute("id", "input")
+  initalInput.setAttribute("name", "input");
+  initalInput.setAttribute("type", "text");
+  inputContainer.appendChild(initalInput);
+
+  var submit = document.createElement("button");
+  submit.textContent = "Submit";
+  submit.className = "submit-btn";
+  submit.addEventListener("click", event => {
+
+        var initals = document.getElementById("input").value;
+
+        localStorage.setItem("initals", initals);
+
+        localStorage.setItem("score", totalPoints);
+
+        scoreDiv.remove();
+
+        //highScores();
     })
+    inputContainer.appendChild(submit);
 
-    var answer2 = document.createElement("button");
-    answer2.className = "answer-two";
-    answer2.textContent = "2. let cannot be reassigned, const can be reassigned";
-    answerDiv.appendChild(answer2);
-    answer2.addEventListener("click", event => {
-        wrong();
-    });
 
-    var answer3 = document.createElement("button");
-    answer3.className = "answer-three";
-    answer3.textContent = "3. let is functional scope, while const is block scope";
-    answerDiv.appendChild(answer3);
-    answer3.addEventListener("click", event => {
-        wrong();
-    });
+}
 
-    var answer4 = document.createElement("button");
-    answer4.className = "answer-four";
-    answer4.textContent = "4. let is block scope, while const is functional scope";
-    answerDiv.appendChild(answer4);
-    answer4.addEventListener("click", event => {
-        wrong();
-    });
+var questionFive = function () {
+  var wrong = function () {
+    questionDiv.remove();
+}
+
+  var questionDiv = document.createElement("div");
+  questionDiv.className = "questionDiv";
+  startEl.appendChild(questionDiv);
+
+  var question =document.createElement("h1");
+  question.className = "question";
+  question.textContent = "What are the main differences between let and const?";
+  questionDiv.appendChild(question);
+
+  var answerDiv = document.createElement("div");
+  answerDiv.className = "answerDiv";
+  questionDiv.appendChild(answerDiv);
+
+  var answer1 = document.createElement("button");
+  answer1.className = "answer-one";
+  answer1.textContent = "1. let can be reassigned, const cannot be reassigned";
+  answerDiv.appendChild(answer1);
+  answer1.addEventListener("click", event => {
+    questionDiv.remove();
+    points();
+    yourScore();
+})
+
+  var answer2 = document.createElement("button");
+  answer2.className = "answer-two";
+  answer2.textContent = "2. let cannot be reassigned, const can be reassigned";
+  answerDiv.appendChild(answer2);
+  answer2.addEventListener("click", event => {
+    wrong();
+});
+
+  var answer3 = document.createElement("button");
+  answer3.className = "answer-three";
+  answer3.textContent = "3. let is functional scope, while const is block scope";
+  answerDiv.appendChild(answer3);
+  answer3.addEventListener("click", event => {
+    wrong();
+});
+
+  var answer4 = document.createElement("button");
+  answer4.className = "answer-four";
+  answer4.textContent = "4. let is block scope, while const is functional scope";
+  answerDiv.appendChild(answer4);
+  answer4.addEventListener("click", event => {
+    wrong();
+  });
 };
 
 var questionFour = function () {
