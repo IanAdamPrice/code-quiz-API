@@ -1,7 +1,7 @@
 var startEl = document.querySelector("#quizBody");
 var timerEl = document.querySelector("#timer");
 var time = 75;
-var score = 0;
+var totalScore = 0;
 
 var score = function () {
   totalScore = totalScore + 10;
@@ -14,7 +14,6 @@ var timer = function () {
       timerEl.textContent = time;
       time --;
     } else {
-        timerEl.textContent("You ran out of time!");
         clearInterval(timeInt);
     }
   }, 1000);
@@ -61,7 +60,7 @@ var yourScore = function () {
 
         localStorage.setItem("initals", initals);
 
-        localStorage.setItem("score", totalPoints);
+        localStorage.setItem("result", totalScore);
 
         scoreDiv.remove();
 
@@ -75,6 +74,7 @@ var yourScore = function () {
 var questionFive = function () {
   var wrong = function () {
     questionDiv.remove();
+    yourScore();
 }
 
   var questionDiv = document.createElement("div");
@@ -96,7 +96,7 @@ var questionFive = function () {
   answerDiv.appendChild(answer1);
   answer1.addEventListener("click", event => {
     questionDiv.remove();
-    points();
+    score();
     yourScore();
 })
 
@@ -176,7 +176,7 @@ var questionFour = function () {
     answer4.addEventListener("click", event => {
         questionDiv.remove();
         questionFive();
-        points();
+        score();
     })
 };
 
@@ -207,7 +207,7 @@ var questionThree = function () {
     answer1.addEventListener("click", event => {
         questionDiv.remove();
         questionFour();
-        points();
+        score();
     })
 
     var answer2 = document.createElement("button");
@@ -270,7 +270,7 @@ var questionTwo = function () {
     answer2.addEventListener("click", event => {
         questionDiv.remove();
         questionThree();
-        points();
+        score();
     })
 
     var answer3 = document.createElement("button");
@@ -318,7 +318,7 @@ var questionOne = function() {
     answer1.addEventListener("click", event => {
         questionDiv.remove();
         questionTwo();
-        points();
+        score();
     })
 
 
