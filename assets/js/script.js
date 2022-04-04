@@ -19,6 +19,7 @@ var timer = function () {
   }, 1000);
 };
 
+
 var highScore = function () {
   var highScoreDiv = document.createElement("div");
   highScoreDiv.className = "highScore";
